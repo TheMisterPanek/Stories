@@ -1,0 +1,18 @@
+import telebot
+
+bot = telebot.TeleBot('915497476:AAGDnk1DimGbiUdIwzI4sl7lhBOYxqx0ZJM')
+
+print('bot started')
+
+@bot.message_handler(commands=['start'])
+def start_message(message):
+  bot.send_message(message.chat.id, message)
+
+@bot.message_handler(content_types=[''])
+def set_text(usr_msg):
+  print(usr_msg)
+  bot.send_message(usr_msg.chat.id, usr_msg.text)
+
+bot.polling()
+
+print('bot ended')
