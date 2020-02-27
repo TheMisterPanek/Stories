@@ -1,17 +1,23 @@
 from peewee import *
 
-class User():
-	chat_id = IntegerField()
+db = SqliteDatabase('people.db')
 
-class Leaf():
-	type = CharField()
+class Entity():
+   class Meta:
+        database = db
+
+class User(Entity):
+  chat_id = IntegerField()
+
+class Leaf(Entity):
+  leaf_type = CharField()
   content = CharField()
 
-class Story():
-	name = CharField()
-	user = ForeignKeyField(User)
+class Story(Entity):
+  name = CharField()
+  user = ForeignKeyField(User)
 
-class Tree():
-	story = ForeignKeyField(Story)
-	parent = ForeignKeyField(Leaf)
+class Tree(Entity):
+  story = ForeignKeyField(Story)
+  parent = ForeignKeyField(Leaf)
   child = ForeignKeyField(Leaf)
