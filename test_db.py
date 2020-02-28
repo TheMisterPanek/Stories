@@ -1,5 +1,6 @@
-impot unittest
+import unittest
 import db
 
 class TestStoriesDataBase(unittest.TestCase):
-  def 
+  def test_create_story(self):
+    db.create_story()
